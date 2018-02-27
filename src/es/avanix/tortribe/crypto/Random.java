@@ -12,8 +12,8 @@ public class Random {
     
     private static SecureRandom random = new SecureRandom();
     
-    public static String getRandom() {
-        return new BigInteger(130, random).toString(32);
-    }
+//    public static String getRandom() {
+//        return new BigInteger(130, random).toString(32);
+//    }
     
 }

@@ -1,5 +1,6 @@
 package es.avanix.tortribe.core;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import es.avanix.tortribe.crypto.Base32;
 import es.avanix.tortribe.crypto.SHAHash;
 import java.security.InvalidKeyException;
@@ -14,8 +15,6 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.util.encoders.Base64;
 
 /**
  *
@@ -99,7 +98,7 @@ public class Identity {
 
         if (this.publickey == null) {
             try {
-                byte[] byteKey = Base64.decode(this.hs_public_key.getBytes());
+                byte[] byteKey = Base64.decode(this.hs_public_key);
                 X509EncodedKeySpec X509publicKey = new X509EncodedKeySpec(byteKey);
                 KeyFactory kf = KeyFactory.getInstance("RSA");
 
@@ -125,38 +124,13 @@ public class Identity {
      */
     public boolean verifyMessage(String message, String signature) {
 
-        try {
-            byte[] signaturebytes = Base64.decode(signature);
-
-            Security.addProvider(new BouncyCastleProvider());
-
-            Signature signature1 = Signature.getInstance("SHA1withRSA", "BC");
-            signature1.initVerify(this.getPublicKey());
-            signature1.update(message.getBytes());
-
-            return signature1.verify(signaturebytes);
-
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Identity.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchProviderException ex) {
-            Logger.getLogger(Identity.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SignatureException ex) {
-            Logger.getLogger(Identity.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeyException ex) {
-            Logger.getLogger(Identity.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //TODO: verify signed message with ED25519
 
         return false;
     }
 
     public boolean verifyOnion() {
-        //System.out.println("Original HS name: " + this.onion.getName());
-        byte[] bytesPK = Base64.decode(this.hs_public_key);
-        byte[] sliced = Arrays.copyOfRange(bytesPK, 22, bytesPK.length);
-        byte[] sha1 = SHAHash.getSHA1(sliced);
-        byte[] sha1_2 = Arrays.copyOfRange(sha1, 0, 10);
-        String generatedOnion = Base32.encode(sha1_2).toLowerCase();
-        //System.out.println("Generated HS name: " + generatedOnion);
-        return this.onion.getName().equals(generatedOnion);
+        //TODO: verify and generate onion string from public key and compare
+        return false;
     }
 }

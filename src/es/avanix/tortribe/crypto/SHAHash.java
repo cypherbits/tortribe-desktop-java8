@@ -8,7 +8,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bouncycastle.jcajce.provider.digest.SHA3;
 
 /**
  *
@@ -50,25 +49,13 @@ public class SHAHash {
 
         return null;
     }
-
-    public static byte[] getSHA1(byte[] convertme) {
-        try {
-            java.security.MessageDigest d = null;
-            d = java.security.MessageDigest.getInstance("SHA-1");
-            d.reset();
-            d.update(convertme);
-            return d.digest();
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(SHAHash.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
     
-    public static byte[] getSHA3(byte[] input){
-        SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512();
-        byte[] digest = digestSHA3.digest(input);
-        return digest;
-    }
+//    
+//    public static byte[] getSHA3(byte[] input){
+//        SHA3.DigestSHA3 digestSHA3 = new SHA3.Digest512();
+//        byte[] digest = digestSHA3.digest(input);
+//        return digest;
+//    }
 
 
 }
