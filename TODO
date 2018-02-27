@@ -1,0 +1,82 @@
+-> al verificar signature que tambien se verifique el onion... porque sino cualquiera se puede inventar unas claves y firmar pero para todos los onion.
+
+
+ver graficos de chat de
+https://github.com/Oshan96/ChatRoomFX
+
+http://docs.oracle.com/javafx/2/threads/jfxpub-threads.htm
+
+
+v0.2 alpha privada: 24/09/2017
+-implementar bien todo lo de conexiones. 
+-bug: bloquear o eliminar contactos con conexiones abiertas se bloquea.
+-implementar todo lo de errores network para que asi si no es amigo o esta bloqueado no pasen cosas raras.
+-que chattab no intente conectarse infinitamente.
+-version 1 de protocolo.
+-poner limites estrictos en protocolo de maximo texto en nick, que puerto sea numero etc... 
+-ver y revisar todos los TODOs que hay en el codigo.
+-reorganizar todo en codigo en diferentes clases etc. como queria hacerlo.
+-lista de conexiones por onion, amigos o no. asi gestionar bien las conexiones y no hacer de mas.
+-cambiar Base64 a Base64.getEncoder() o getDecoder(), mirar si en todos los sitios se usa el mismo import de Base64
+-BUG: si tor no esta corriendo da error, pero si se inicia no coge bien la cookie y da error de password y entonces debes reiniciar tortribe
+-Friend request dialog: add NO button and delete the contact.
+
+-login, quitar pantalla login???
+
+-HACER PUBLICO
+
+v0.3 alpha privada: (1/10/2017)
+-Hacer que doble clic en jar se abra aplicaciones, tiene que ver con rutas relativas o no??
+-Manejador de errores global http://code.makery.ch/blog/javafx-dialogs-official/
+-mejoras en threads y correccion de errores.
+-Mejoras en GUI: añadir amigos, solicitud amistad y chat completos.
+-amlacenar chats en ddbb local. opcion eliminar historial.
+-version 1 del protocolo. FINAL.
+-Establecer versiones del protocolo al hacer conexion.
+-detectar si sockets se desconectan y actuar.
+-autodetectar si onion nuestro esta online o no y mostrar estado.
+-set conexiones para envio y recibimiento en UTF8??
+-ventana loading, con progreso de tor y todo asincrona.
+-ver si vale la pena usar Service en vez de threads. Usar Tasks.
+-ver si los sockets los podemos crear dentro de FriendConnection tambien cuando no haya socket
+-ver si poner dentro de FriendsManager metodos de getMessageConnnection o cosas asi para gestionar bien conexiones.
+-autodetectar Tor instalado en windows.
+-Error si carpeta de Tor se ha movido y mostrar para seleccionar.
+-Error si conexion de control a Tor no se puede establecer.
+-Listen server address: make only listen to 127.0.0.1
+-¿Settings dialog. Blocked users/onions list. Remove blocked users from normal friends list.?
+
+v0.4 alpha privada: (x/08/2017)
+-Explorar y hacer lista de archivos compartidos. identificador con sha256.
+-Buscar en archivos compartidos.
+-Implementarlo todo en peticiones. version 2 del protocolo.
+-descarga archivos de un usuario, todavia no multisource. 
+-compartir links de archivos en el chat.
+
+v0.5 alpha privada: x/04/2017
+-descarga de archivos multisource.
+-Añadir indicador del estado de Tor y todo el Log. Tambien tabla de todos los circuitos.
+-version 3 del protocolo. ??
+
+v0.6 alpha privada: x/04/2017
+-Que no haga falta iniciar Tor Browser, que lo ejecutemos nosotros el tor.
+-mejoras.
+
+v0.7 alpha privada: x/04/2017
+-publicar codigo fuente.
+-mejoras de errores.
+
+v0.8 alpha publica: x/05/2017
+-mejoras de errores.
+-Use SQLCipher and encrypt database. poner contraseñas. -> sin retrocompatibilidad.
+-publicitar en telegram etc.
+
+v0.9 alpha: x/05/2017
+-Cloud Login: inicio de sesion con cloud y sincronizacion de contactos y alias.
+
+
+--Future:
+
+Add int id for online identities (cloud login)
+
+Llevar una version de Tor con nosotros para que no haga falta tener Tor Browser portable.
