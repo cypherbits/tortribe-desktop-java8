@@ -10,8 +10,8 @@ import java.util.regex.Pattern;
 public class OnionAdress {
 
     private static final String DOMAIN = "onion";
-    private static final Pattern ONION = Pattern.compile("[a-z2-7]{16}");
-    private static final Pattern ONIONV3 = Pattern.compile("[a-z2-7]{50}");
+    //private static final Pattern ONION = Pattern.compile("[a-z2-7]{16}");
+    private static final Pattern ONIONV3 = Pattern.compile("[a-z2-7]{56}");
 
     private String name;
 
@@ -19,7 +19,7 @@ public class OnionAdress {
         if (isOnionValid(name)) {
             this.name = name;
         } else {
-            throw new Exception("Onion name string not valid, pattern: " + OnionAdress.ONION.toString());
+            throw new Exception("Onion name string not valid, pattern: " + OnionAdress.ONIONV3.toString());
         }
     }
 
@@ -32,17 +32,11 @@ public class OnionAdress {
     }
 
     public static boolean isOnionValid(String name) {
-        Matcher matcher = OnionAdress.ONION.matcher(name);
+        Matcher matcher = OnionAdress.ONIONV3.matcher(name);
         if (matcher.find()) {
             return true;
         } else {
-            Matcher matcher2 = OnionAdress.ONIONV3.matcher(name);
-            if (matcher2.find()) {
-                return true;
-            } else {
-                return false;
-            }
-
+            return false;
         }
     }
 }

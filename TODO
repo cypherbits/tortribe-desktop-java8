@@ -1,4 +1,14 @@
--> al verificar signature que tambien se verifique el onion... porque sino cualquiera se puede inventar unas claves y firmar pero para todos los onion.
+https://raw.githubusercontent.com/torproject/torspec/master/rend-spec-v3.txt
+https://raw.githubusercontent.com/torproject/torspec/master/control-spec.txt
+
+https://download.libsodium.org/doc/bindings_for_other_languages/
+
+https://github.com/muquit/libsodium-jna#install-native-libsodium-c-library--first
+
+https://github.com/abstractj/kalium
+
+USE THIS FOR CURVE25519
+https://github.com/neilalexander/jnacl
 
 
 ver graficos de chat de

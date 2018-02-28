@@ -53,7 +53,7 @@ public class Tortribe extends Application {
     @Override
     public void start(Stage stage) {
 
-        Thread.setDefaultUncaughtExceptionHandler(Tortribe::showError);
+        //Thread.setDefaultUncaughtExceptionHandler(Tortribe::showError);
 
         //friendsConnections = new HashMap<String, Connection>();
 

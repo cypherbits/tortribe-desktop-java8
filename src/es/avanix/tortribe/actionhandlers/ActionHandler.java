@@ -147,6 +147,7 @@ public class ActionHandler extends ActionEvent implements Runnable {
 
                     } else {
                         //ERROR: identity sub objects required are not present
+                        System.err.println("Error: identity sub objects required are not present.");
                     }
 
                 } else {

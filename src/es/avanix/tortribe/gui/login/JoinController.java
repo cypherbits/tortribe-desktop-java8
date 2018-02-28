@@ -67,9 +67,10 @@ public class JoinController implements Initializable {
                     Map<Integer, String> onionConfig = new HashMap<Integer, String>();
                     onionConfig.put(Tortribe.listenPORT, "127.0.0.1:" + Tortribe.listenPORT);
 
-                    Map<String, String> dice = TorControl.getConnection(str).addOnion(onionConfig);
+                    Map<String, String> dice = TorControl.getConnection(str).addOnion("NEW:ED25519-V3", onionConfig);
 
-                    // System.out.println(dice.toString());
+                    OnionAdress oa = new OnionAdress(dice.get("onionAddress"));
+                    
                     SQLite.setConfig("onionAddress", dice.get("onionAddress"));
                     SQLite.setConfig("onionPrivKey", dice.get("onionPrivKey"));
 
@@ -78,7 +79,7 @@ public class JoinController implements Initializable {
 
                     SQLite.setConfig("nick", join_txtNick.getText());
 
-                    MyIdentity myIdentity = new MyIdentity(onionPrivKey, join_txtNick.getText(), new OnionAdress(onionAddress), Tortribe.listenPORT);
+                    MyIdentity myIdentity = new MyIdentity(onionPrivKey, join_txtNick.getText(), oa, Tortribe.listenPORT);
                     MyIdentity.setMyIdentity(myIdentity);
 
                     System.out.println("Nick ahora es: " + MyIdentity.getMyidentity().getNick());

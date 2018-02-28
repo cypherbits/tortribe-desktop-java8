@@ -1,6 +1,7 @@
 package es.avanix.tortribe.core;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+import es.avanix.tortribe.crypto.Base32;
 import es.avanix.tortribe.utils.TextUtils;
 import java.io.IOException;
 import java.io.StringReader;
@@ -16,6 +17,13 @@ import java.security.Signature;
 import java.security.SignatureException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import net.i2p.crypto.eddsa.EdDSAEngine;
+import net.i2p.crypto.eddsa.EdDSAPrivateKey;
+import net.i2p.crypto.eddsa.EdDSAPublicKey;
+import net.i2p.crypto.eddsa.spec.EdDSANamedCurveTable;
+import net.i2p.crypto.eddsa.spec.EdDSAParameterSpec;
+import net.i2p.crypto.eddsa.spec.EdDSAPrivateKeySpec;
+import net.i2p.crypto.eddsa.spec.EdDSAPublicKeySpec;
 
 /**
  *
@@ -41,7 +49,11 @@ public class MyIdentity extends Identity {
 
         MyIdentity.hs_private_key = hs_private_key;
 
-        //TODO: get public key from private key
+        //Get public key from private key
+        byte[] privateKeybytes = Base64.decode(myidentity.hs_private_key.substring("ED25519-V3:".length()));
+        EdDSAParameterSpec spec = EdDSANamedCurveTable.getByName(EdDSANamedCurveTable.ED_25519);
+        EdDSAPrivateKeySpec privateKey = new EdDSAPrivateKeySpec(spec, privateKeybytes);
+        super.setHsPublicKey(Base64.encode(privateKey.getA().toByteArray()));
     }
 
     public static MyIdentity getMyidentity() {
@@ -56,29 +68,22 @@ public class MyIdentity extends Identity {
         return MyIdentity.hs_private_key;
     }
 
-    public void setHs_private_key(String hs_private_key) {
-        MyIdentity.hs_private_key = hs_private_key;
-    }
-
-    //TODO get private key, PrivateKey and String. parse etc...
-    public static PrivateKey getPrivateKey() {
-
-        if (MyIdentity.privatekey == null) {
-
-           //TODO: get Private key object from string
-
-            return null;
-
-        } else {
-            return MyIdentity.privatekey;
-        }
-
-    }
-
     public static byte[] signMessage(String message) {
-        //TODO: sign message ED25519
+        try {
+            byte[] privateKeybytes = Base64.decode(myidentity.hs_private_key.substring("ED25519-V3:".length()));
 
-        return null;
+            EdDSAParameterSpec spec = EdDSANamedCurveTable.getByName(EdDSANamedCurveTable.ED_25519);
+            EdDSAPrivateKeySpec privateKey = new EdDSAPrivateKeySpec(spec, privateKeybytes);
+            EdDSAPrivateKey prikey = new EdDSAPrivateKey(privateKey);
+
+            EdDSAEngine engine = new EdDSAEngine();
+            engine.initSign(prikey);
+
+            return engine.signOneShot(message.getBytes());
+        } catch (InvalidKeyException | SignatureException ex) {
+            Logger.getLogger(MyIdentity.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
 }

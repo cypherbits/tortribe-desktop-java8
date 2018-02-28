@@ -48,7 +48,7 @@ public class ConnectionManager {
                 InetSocketAddress dest = new InetSocketAddress(fi.getOnion().getURI(), fi.getPort());
                 System.out.println("cliente a " + fi.getOnion().getURI());
                 //socket.setSoTimeout(30000);
-                socket.connect(dest, 7000);
+                socket.connect(dest, 10000);
                 if (socket.isConnected()) {
                     Connection con = new Connection(socket, friendConnections.size() + 1);
                     addFriendConnection(fi.getOnion().getName(), con);
@@ -80,10 +80,9 @@ public class ConnectionManager {
             } catch (InterruptedException ex) {
                 Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
             }
+            System.out.println("try " + String.valueOf(retry));
             fc = getNewCon(fi);
             retry -= 1;
-
-            System.out.println("try " + String.valueOf(retry));
         }
 
         if (ConnectionManager.getFriendConnections().containsKey(fi.getOnion().getName())) {

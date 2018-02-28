@@ -153,7 +153,7 @@ public class AppLoaderController implements Initializable {
 
         TorControl.init(tbdir);
 //        
-//        test.onion();
+//        test.onion2();
 //        System.exit(0);
 
         try {
