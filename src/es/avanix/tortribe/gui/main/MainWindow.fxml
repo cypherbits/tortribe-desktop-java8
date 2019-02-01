@@ -68,14 +68,14 @@
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                     </content>
                                 </Tab>
-                                <Tab closable="false" text="My files">
+                                <Tab closable="false" text="Shared files">
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
                                     <TableView fx:id="myFiles_tableView" prefHeight="513.0" prefWidth="470.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="File name" />
-                                        <TableColumn prefWidth="75.0" text="File hash" />
+                                        <TableColumn fx:id="column_filename" prefWidth="75.0" text="File name" />
+                                        <TableColumn fx:id="column_filehash" prefWidth="75.0" text="File hash" />
                                       </columns>
                                     </TableView>
                                  </children>

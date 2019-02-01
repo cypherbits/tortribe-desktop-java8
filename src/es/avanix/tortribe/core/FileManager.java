@@ -2,7 +2,9 @@
 package es.avanix.tortribe.core;
 
 import es.avanix.tortribe.crypto.SHAHash;
+import es.avanix.tortribe.gui.parts.FileInTable;
 import es.avanix.tortribe.main.Tortribe;
+import es.avanix.tortribe.utils.TextUtils;
 import java.io.File;
 import java.util.HashMap;
 
@@ -33,9 +35,10 @@ public class FileManager {
     }
     
     public static void populate(){
+        
         localFiles.forEach((t, u) -> {
-            String[] filetoadd = {u.getName(), new String(t)};
-            Tortribe.myFiles_tableView.getItems().add(filetoadd);
+            //String[] filetoadd = {u.getName(), new String(t)};
+            Tortribe.myFiles_tableView.getItems().add(new FileInTable(TextUtils.bytesToHex(t), u.getName()));
         });
        
     }
