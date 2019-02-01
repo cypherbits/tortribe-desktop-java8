@@ -7,93 +7,102 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.161" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.avanix.tortribe.gui.main.MainWindowController">
-   <children>
-      <AnchorPane prefHeight="50.0" prefWidth="800.0" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label fx:id="main_labelNick" layoutX="52.0" layoutY="8.0" text="Nick">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font></Label>
-            <Button fx:id="main_btnAbout" layoutX="729.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleAboutButtonAction" text="About" AnchorPane.rightAnchor="14.0" />
-            <Hyperlink fx:id="main_linkInvite" layoutX="204.0" layoutY="25.0" onAction="#handleInviteLinkAction" text="onion:port">
-               <font>
-                  <Font size="12.0" />
-               </font>
-            </Hyperlink>
-            <Circle fx:id="main_circleStatus" fill="#ff2121" layoutX="40.0" layoutY="18.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Label fx:id="main_labelStatus" layoutX="33.0" layoutY="28.0" text="Invitation link, click to copy:">
-               <font>
-                  <Font size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <SplitPane dividerPositions="0.40601503759398494" layoutY="30.0" prefHeight="571.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <TabPane prefHeight="571.0" prefWidth="350.0" style="-fx-border-color: #CCC;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <tabs>
-                      <Tab text="Friends">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+<AnchorPane id="AnchorPane" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.181" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.avanix.tortribe.gui.main.MainWindowController">
+    <children>
+        <AnchorPane prefHeight="50.0" prefWidth="800.0" AnchorPane.bottomAnchor="550.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label fx:id="main_labelNick" layoutX="52.0" layoutY="8.0" text="Nick">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Button fx:id="main_btnAbout" layoutX="729.0" layoutY="12.0" mnemonicParsing="false" onAction="#handleAboutButtonAction" text="About" AnchorPane.rightAnchor="14.0" />
+                <Hyperlink fx:id="main_linkInvite" layoutX="204.0" layoutY="25.0" onAction="#handleInviteLinkAction" text="onion:port">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Hyperlink>
+                <Circle fx:id="main_circleStatus" fill="#ff2121" layoutX="40.0" layoutY="18.0" radius="7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                <Label fx:id="main_labelStatus" layoutX="33.0" layoutY="28.0" text="Invitation link, click to copy:">
+                    <font>
+                        <Font size="12.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <SplitPane dividerPositions="0.40601503759398494" layoutY="30.0" prefHeight="571.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <TabPane prefHeight="571.0" prefWidth="350.0" style="-fx-border-color: #CCC;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <tabs>
+                                <Tab text="Friends">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <Button fx:id="main_btnAddFriend" layoutX="6.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleAddFriendButtonAction" text="Add friend" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0" />
+                                                <ListView fx:id="main_listFriends" layoutX="6.0" layoutY="35.0" prefHeight="177.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="35.0" />
+                                                <Label layoutX="139.0" layoutY="13.0" text="Online: x  Total: y" />
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <TabPane fx:id="main_tabs" layoutX="44.0" layoutY="11.0" prefHeight="571.0" prefWidth="451.0" style="-fx-border-color: #CCC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <tabs>
+                                <Tab closable="false" text="Downloads">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    </content>
+                                </Tab>
+                                <Tab closable="false" text="My files">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="main_btnAddFriend" layoutX="6.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleAddFriendButtonAction" text="Add friend" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="6.0" />
-                                    <ListView fx:id="main_listFriends" layoutX="6.0" layoutY="35.0" prefHeight="177.0" prefWidth="200.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="35.0" />
-                                    <Label layoutX="139.0" layoutY="13.0" text="Online: x  Total: y" />
+                                    <TableView fx:id="myFiles_tableView" prefHeight="513.0" prefWidth="470.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="File name" />
+                                        <TableColumn prefWidth="75.0" text="File hash" />
+                                      </columns>
+                                    </TableView>
                                  </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                    </tabs>
-                  </TabPane>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <TabPane fx:id="main_tabs" layoutX="44.0" layoutY="11.0" prefHeight="571.0" prefWidth="451.0" style="-fx-border-color: #CCC;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <tabs>
-                        <Tab text="Nick files">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                          </content>
-                        </Tab>
-                      <Tab closable="false" text="Downloads">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <Label fx:id="main_downloadsLabelConnections" layoutX="14.0" layoutY="21.0" text="Number of total connections: z" />
-                                 </children></AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab closable="false" text="File search">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </Tab>
-                        <Tab fx:id="main_tabChatExample" text="Chat with FriendNick">
-                           <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <TextArea fx:id="main_txtChat" editable="false" layoutX="35.0" layoutY="17.0" prefHeight="483.0" prefWidth="449.0" wrapText="true" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    <TextField fx:id="main_chatMessage" layoutY="483.0" prefHeight="50.0" prefWidth="366.0" promptText="Message to send" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="83.0" />
-                                    <Button fx:id="main_chatBtnSend" layoutX="366.0" layoutY="483.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="82.0" text="SEND" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0" />
-                                 </children>
-                              </AnchorPane>
-                           </content>
-                        </Tab>
-                    </tabs>
-                  </TabPane>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-   </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab closable="false" text="File search">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    </content>
+                                </Tab>
+                                <Tab fx:id="main_tabChatExample" text="Chat with FriendNick">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <TextArea fx:id="main_txtChat" editable="false" layoutX="35.0" layoutY="17.0" prefHeight="483.0" prefWidth="449.0" wrapText="true" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <TextField fx:id="main_chatMessage" layoutY="483.0" prefHeight="50.0" prefWidth="366.0" promptText="Message to send" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="83.0" />
+                                                <Button fx:id="main_chatBtnSend" layoutX="366.0" layoutY="483.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="82.0" text="SEND" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="1.0" />
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>

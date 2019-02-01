@@ -2,6 +2,7 @@ package es.avanix.tortribe.gui.main;
 
 import es.avanix.tortribe.actionhandlers.AddFriendAccept;
 import es.avanix.tortribe.actionhandlers.AutoTest;
+import es.avanix.tortribe.core.FileManager;
 import es.avanix.tortribe.core.FriendIdentity;
 import es.avanix.tortribe.core.FriendsManager;
 import es.avanix.tortribe.core.ListenThread;
@@ -10,6 +11,7 @@ import es.avanix.tortribe.gui.parts.ChatTabController;
 import es.avanix.tortribe.main.Tortribe;
 import es.avanix.tortribe.net.ConnectionManager;
 import es.avanix.tortribe.utils.AlertHelper;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -37,6 +39,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -67,6 +70,9 @@ public class MainWindowController implements Initializable {
     private Tab main_tabChatExample;
     
     @FXML
+    private TableView myFiles_tableView;
+    
+    @FXML
     private Circle main_circleStatus;
     
     @FXML
@@ -74,9 +80,7 @@ public class MainWindowController implements Initializable {
     
     @FXML
     private Label main_labelNick;
-    
-    @FXML
-    private Label main_downloadsLabelConnections;
+   
     
     @FXML
     public Label main_labelStatus;
@@ -107,6 +111,8 @@ public class MainWindowController implements Initializable {
         
         Tooltip t = new Tooltip("Copy link.");
         Tooltip.install(main_linkInvite, t);
+        
+        Tortribe.myFiles_tableView = myFiles_tableView;
 
         //GUI test 
 //        ObservableList<String> items = FXCollections.observableArrayList(
@@ -204,12 +210,32 @@ public class MainWindowController implements Initializable {
         
         FriendsManager.populateFriends();
         
-        Tortribe.tabs.put("downloads", main_tabs.getTabs().get(1));
+        Tortribe.tabs.put("downloads", main_tabs.getTabs().get(0));
+        Tortribe.tabs.put("myfiles", main_tabs.getTabs().get(1));
         //main_tabs.getTabs().removeAll(main_tabs.getTabs());
         main_tabs.getTabs().setAll(Tortribe.tabs.values());
 
         //Start self connection test
         AutoTest.send();
+        
+        Thread thread_filelist = new Thread(new Runnable() {
+            @Override
+            public void run() {
+               File downloadDirectory = new File("./DownloadDir");
+               if (!downloadDirectory.exists() || !downloadDirectory.isDirectory()){
+                   downloadDirectory.mkdirs();
+               }
+               
+                FileManager.init("./DownloadDir");
+                
+                Platform.runLater(() -> {
+                    FileManager.populate();
+                });
+            }
+        });
+        thread_filelist.setName("thread_filelist");
+        thread_filelist.setDaemon(true);
+        thread_filelist.start();
         
         main_listFriends.setOnMouseClicked(new EventHandler<MouseEvent>() {
             

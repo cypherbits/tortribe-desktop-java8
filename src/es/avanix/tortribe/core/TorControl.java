@@ -31,7 +31,7 @@ import net.freehaven.tor.control.TorControlConnection;
  */
 public class TorControl {
 
-    private static final String cookieDir = "Browser/TorBrowser/Data/Tor/";
+    private static final String cookieDir = "tor-browser_en-US/Browser/TorBrowser/Data/Tor/";
     private static File cookieFile;
     private static byte[] cookie;
 

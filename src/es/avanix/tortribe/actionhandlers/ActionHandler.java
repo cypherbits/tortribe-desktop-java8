@@ -180,6 +180,12 @@ public class ActionHandler extends ActionEvent implements Runnable {
                         new Message(this);
 
                         break;
+                        
+                    case "getfilehashlist":
+                        
+                        new GetFileHashList(this);
+                        
+                        break;
 
                     default:
 

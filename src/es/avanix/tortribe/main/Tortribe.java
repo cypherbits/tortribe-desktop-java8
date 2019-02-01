@@ -17,8 +17,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
@@ -49,6 +51,8 @@ public class Tortribe extends Application {
     public static Map<String, Tab> tabs;
 
     public static TabPane main_tabs;
+    
+    public static TableView myFiles_tableView;
 
     @Override
     public void start(Stage stage) {
